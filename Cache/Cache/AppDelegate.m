@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "HomeViewController.h"
+
 
 @interface AppDelegate ()
 
@@ -18,8 +18,28 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    //Override point for customization after application launch.
+    self.window.backgroundColor= [UIColor whiteColor];
+    self.window.rootViewController= [HomeViewController new];
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"ULD2xBXu57z5uTrF3VXaGRA5k21GlrzZkZq987lE"
+                  clientKey:@"DZqxv1sjrnt9tNvItfKtVZTJWDh7FQD7CeCGdYtV"];
+    
+    //Initialize Parse with Facebook
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     // Override point for customization after application launch.
     //return YES;
+    [self.window makeKeyAndVisible];
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
 }
@@ -39,7 +59,22 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [FBSDKAppEvents activateApp];
+    NSLog(@"applicationDidBecomeActive");
+    if ([PFUser currentUser]){
+        [FBSDKAppEvents activateApp];
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                // handle successful response
+            } else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
+                NSLog(@"The facebook session was invalidated");
+                [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser]];
+            } else {
+                NSLog(@"Some other error: %@", error);
+            }
+        }];
+    }
+   
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
