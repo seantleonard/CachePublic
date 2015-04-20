@@ -2,13 +2,13 @@
 //  AppDelegate.m
 //  Cache
 //
-//  Created by Manish Shukla on 4/15/15.
-//  Copyright (c) 2015 Sean Leonard. All rights reserved.
+//  Created by Manish Shukla on 4/20/15.
+//  Copyright (c) 2015 Cache. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "HomeViewController.h"
-
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -18,31 +18,19 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    //Override point for customization after application launch.
-    self.window.backgroundColor= [UIColor whiteColor];
-    self.window.rootViewController= [HomeViewController new];
+    // Override point for customization after application launch.
+    // [Optional] Power your app with Local Datastore. For more info, go to
+    // https://parse.com/docs/ios_guide#localdatastore/iOS
     [Parse enableLocalDatastore];
     
     // Initialize Parse.
-    [Parse setApplicationId:@"ULD2xBXu57z5uTrF3VXaGRA5k21GlrzZkZq987lE"
-                  clientKey:@"DZqxv1sjrnt9tNvItfKtVZTJWDh7FQD7CeCGdYtV"];
-    
-    //Initialize Parse with Facebook
-    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
+    [Parse setApplicationId:@"zWQ2UIVsr9UrrMt2nvZKwFuE3iVq2WtO3FoSHjGZ"
+                  clientKey:@"yn6GHXqE6YI17OyztK9pxYpbWFEuTKy3WTh09yk1"];
     
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    // Override point for customization after application launch.
-    //return YES;
-    [self.window makeKeyAndVisible];
     return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                    didFinishLaunchingWithOptions:launchOptions];
-}
+                                    didFinishLaunchingWithOptions:launchOptions];}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -59,23 +47,10 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    NSLog(@"applicationDidBecomeActive");
-    if ([PFUser currentUser]){
-        [FBSDKAppEvents activateApp];
-        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
-        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-            if (!error) {
-                // handle successful response
-            } else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"]) { // Since the request failed, we can check if it was due to an invalid session
-                NSLog(@"The facebook session was invalidated");
-                [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser]];
-            } else {
-                NSLog(@"Some other error: %@", error);
-            }
-        }];
-    }
-   
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [FBSDKAppEvents activateApp];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
