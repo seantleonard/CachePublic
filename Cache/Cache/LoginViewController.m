@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "HomeViewController.h"
 
 @interface LoginViewController ()
 @property (strong, nonatomic) UILabel* loading;
@@ -16,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self _loadData];
     //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     //[self.view addSubview:backgroundView];
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
@@ -83,11 +85,51 @@
                 [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
             }
        }];
+    HomeViewController *HVC = [[HomeViewController alloc] init];
+    [self presentViewController:HVC animated:YES completion:nil];
 }
 
--(IBAction) fbLogIn
+-(void) fbLogIn
 {
-    [self performSegueWithIdentifier:@"_loginWithFacebook" sender:self];
+    [self _loginWithFacebook];
+}
+
+- (void)_loadData {
+    // ...
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
+    {
+        if (!error)
+        {
+            // result is a dictionary with the user's Facebook data
+            NSDictionary *userData = (NSDictionary *)result;
+            
+            NSString *facebookID = userData[@"id"];
+            NSString *name = userData[@"name"];
+            NSString *location = userData[@"location"][@"name"];
+            NSString *gender = userData[@"gender"];
+            NSString *birthday = userData[@"birthday"];
+            NSString *relationship = userData[@"relationship_status"];
+            
+            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+            
+            NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+            
+            // Run network request asynchronously
+            [NSURLConnection sendAsynchronousRequest:urlRequest
+                                               queue:[NSOperationQueue mainQueue]
+                                   completionHandler:
+             ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                 if (connectionError == nil && data != nil) {
+                     // Set the image in the imageView
+                     // ...
+                 }
+             }];
+            
+            // Now add the data to the UI elements
+            // ...
+        }
+    }];
 }
 
 

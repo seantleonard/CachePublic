@@ -18,8 +18,6 @@
 
 
 
-@interface LoginViewController : UIViewController <PFLogInViewControllerDelegate>
-
--(IBAction) fbLogIn;
+@interface LoginViewController : PFLogInViewController //UIViewController <PFLogInViewControllerDelegate>
 
 @end
