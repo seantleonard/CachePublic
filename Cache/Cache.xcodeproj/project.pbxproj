@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		134E21501AE5B8C600806BEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E214F1AE5B8C600806BEB /* main.m */; };
 		134E21531AE5B8C600806BEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E21521AE5B8C600806BEB /* AppDelegate.m */; };
-		134E21561AE5B8C600806BEB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E21551AE5B8C600806BEB /* ViewController.m */; };
+		134E21561AE5B8C600806BEB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E21551AE5B8C600806BEB /* LoginViewController.m */; };
 		134E21591AE5B8C600806BEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 134E21571AE5B8C600806BEB /* Main.storyboard */; };
 		134E215B1AE5B8C600806BEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 134E215A1AE5B8C600806BEB /* Images.xcassets */; };
 		134E215E1AE5B8C600806BEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134E215C1AE5B8C600806BEB /* LaunchScreen.xib */; };
 		134E216A1AE5B8C600806BEB /* CacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E21691AE5B8C600806BEB /* CacheTests.m */; };
+		1388FCBA1AE6E28900329AA5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1388FCB91AE6E28900329AA5 /* HomeViewController.m */; };
 		1E66A3737958AA512B529507 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DD7278D19C583E1D78F949 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -33,14 +34,16 @@
 		134E214F1AE5B8C600806BEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		134E21511AE5B8C600806BEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		134E21521AE5B8C600806BEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		134E21541AE5B8C600806BEB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		134E21551AE5B8C600806BEB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		134E21541AE5B8C600806BEB /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		134E21551AE5B8C600806BEB /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		134E21581AE5B8C600806BEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		134E215A1AE5B8C600806BEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		134E215D1AE5B8C600806BEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		134E21631AE5B8C600806BEB /* CacheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CacheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		134E21681AE5B8C600806BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		134E21691AE5B8C600806BEB /* CacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheTests.m; sourceTree = "<group>"; };
+		1388FCB81AE6E28900329AA5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		1388FCB91AE6E28900329AA5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		5A03397C85E524BA465B7024 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E1E2B3B1102C063C46B590AC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2DD7278D19C583E1D78F949 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,8 +93,10 @@
 			children = (
 				134E21511AE5B8C600806BEB /* AppDelegate.h */,
 				134E21521AE5B8C600806BEB /* AppDelegate.m */,
-				134E21541AE5B8C600806BEB /* ViewController.h */,
-				134E21551AE5B8C600806BEB /* ViewController.m */,
+				134E21541AE5B8C600806BEB /* LoginViewController.h */,
+				134E21551AE5B8C600806BEB /* LoginViewController.m */,
+				1388FCB81AE6E28900329AA5 /* HomeViewController.h */,
+				1388FCB91AE6E28900329AA5 /* HomeViewController.m */,
 				134E21571AE5B8C600806BEB /* Main.storyboard */,
 				134E215A1AE5B8C600806BEB /* Images.xcassets */,
 				134E215C1AE5B8C600806BEB /* LaunchScreen.xib */,
@@ -278,9 +283,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				134E21561AE5B8C600806BEB /* ViewController.m in Sources */,
+				134E21561AE5B8C600806BEB /* LoginViewController.m in Sources */,
 				134E21531AE5B8C600806BEB /* AppDelegate.m in Sources */,
 				134E21501AE5B8C600806BEB /* main.m in Sources */,
+				1388FCBA1AE6E28900329AA5 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

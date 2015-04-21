@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <Parse/Parse.h>
 
@@ -21,6 +22,10 @@
     // Override point for customization after application launch.
     // [Optional] Power your app with Local Datastore. For more info, go to
     // https://parse.com/docs/ios_guide#localdatastore/iOS
+    //Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController= [HomeViewController new];
     [Parse enableLocalDatastore];
     
     // Initialize Parse.
@@ -28,7 +33,10 @@
                   clientKey:@"yn6GHXqE6YI17OyztK9pxYpbWFEuTKy3WTh09yk1"];
     
     // [Optional] Track statistics around application opens.
+   
+    //[self.window makeKeyAndVisible];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [self.window makeKeyAndVisible];
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];}
 
@@ -49,8 +57,29 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    [FBSDKAppEvents activateApp];
-
+   // [FBSDKAppEvents activateApp];
+    NSLog(@"applicationDidBecomeActive");
+        if ([PFUser currentUser])
+        {
+            [FBSDKAppEvents activateApp];
+            FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+            [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
+            {
+                if (!error)
+                {
+                                // handle successful response
+                }
+                else if ([[error userInfo][@"error"][@"type"] isEqualToString: @"OAuthException"])
+                { // Since the request failed, we can check if it was due to an invalid session
+                    NSLog(@"The facebook session was invalidated");
+                    [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser]];
+                }
+                else
+                {
+                    NSLog(@"Some other error: %@", error);
+                }
+            }];
+        }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
