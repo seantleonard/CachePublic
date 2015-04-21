@@ -56,9 +56,19 @@
         // Set permissions required from the facebook user account
         NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
     
+    
         // Login PFUser using Facebook
         [PFFacebookUtils logInInBackgroundWithReadPermissions:permissionsArray block:^(PFUser *user, NSError *error)
         {
+            if (![PFFacebookUtils isLinkedWithUser:user])
+            {
+                [PFFacebookUtils linkUserInBackground:user withReadPermissions:nil block:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        NSLog(@"Woohoo, user is linked with Facebook!");
+                    }
+                }];
+            }
+            
             if (!user)
             {
                 NSLog(@"Uh oh. The user cancelled the Facebook login.");
@@ -77,7 +87,7 @@
 
 -(IBAction) fbLogIn
 {
-    [self _loginWithFacebook];
+    [self performSegueWithIdentifier:@"_loginWithFacebook" sender:self];
 }
 
 

@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import "HomeViewController.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -31,6 +29,7 @@
     // Initialize Parse.
     [Parse setApplicationId:@"zWQ2UIVsr9UrrMt2nvZKwFuE3iVq2WtO3FoSHjGZ"
                   clientKey:@"yn6GHXqE6YI17OyztK9pxYpbWFEuTKy3WTh09yk1"];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
     // [Optional] Track statistics around application opens.
    
