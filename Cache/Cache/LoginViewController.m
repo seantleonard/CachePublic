@@ -88,15 +88,20 @@
                  {
                      if (!error)
                      {
-                         NSLog(@"User is in here");
+                         //NSLog(@"User is in here");
                          NSDictionary *userData = (NSDictionary *)result;
+                         NSString* facebookID = userData[@"id"];
                          
-                         //NSString *full_name = userData[@"name"];
-                         //NSString *first_name = userData[@"first_name"];
+                         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", facebookID]];
+                         NSString* pictureLink = [url absoluteString];
+                        // NSData *data = [NSData dataWithContentsOfURL:url];
+                         //PFFile *file = [PFFile fileWithData:data];
                          
                          [user setObject:userData[@"name"] forKey:@"full_name"];
                          [user setObject:userData[@"first_name"] forKey:@"first_name"];
+                         [user setObject:pictureLink forKey:@"pictureLink"];
                          [user save];
+                         [user pinInBackground];
                          
                      }
                  }];
@@ -116,7 +121,7 @@
                         {
                             NSLog(@"User is in here");
                             NSDictionary *userData = (NSDictionary *)result;
-                            NSString* facebookID = userData[@"id"];
+                           /* NSString* facebookID = userData[@"id"];
                             
                             //NSString *full_name = userData[@"name"];
                             //NSString *first_name = userData[@"first_name"];
@@ -138,7 +143,7 @@
                                  }
                              }];
                             
-
+*/
                             
                             [user setObject:userData[@"name"] forKey:@"full_name"];
                             [user setObject:userData[@"first_name"] forKey:@"first_name"];

@@ -23,10 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.user = [PFUser currentUser];
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     [backgroundImageView setFrame:CGRectMake(0, 0, 380, 675)];
     [self.view addSubview:backgroundImageView];
+    self.user = [PFUser currentUser];
+    
   /*  PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query getObjectInBackgroundWithId:@"dfBWrcNBHF" block:^(PFObject *user, NSError *error) {
         // Do something with the returned PFObject in the gameScore variable.
@@ -34,7 +35,38 @@
     }];    //NSString* userFirstName = [theUser objectForKey:@"first_name"];
   */
     self.name = self.user[@"first_name"];
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    NSString* urlString = self.user[@"pictureLink"];
+    NSURL* url = [NSURL URLWithString:urlString];
+    NSLog(urlString);
+    NSData* data = [NSData dataWithContentsOfURL:url];
+    UIImage *profilePic = [[UIImage alloc] initWithData:data];
+    UIImageView* profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(85, 350, 200, 200)];
+    profileImageView.layer.cornerRadius = profileImageView.frame.size.height /2;
+    profileImageView.layer.masksToBounds = YES;
+    profileImageView.layer.borderWidth = 0;
+    [profileImageView setImage:profilePic];
+    [self.view addSubview:profileImageView];
+  /*  PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    [query fromLocalDatastore];
+    [[query getObjectInBackgroundWithId:[self.user objectForKey:@"objectId"]] continueWithBlock:^id(BFTask *task) {
+        if (task.error) {
+            // something went wrong;
+            return task;
+        }
+        self.user = task.result;
+        self.name = self.user[@"first_name"];
+        NSData* data = self.user[@"profile_picture"];
+        UIImage *profilePic = [[UIImage alloc] initWithData:data];
+        UIImageView* profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(85, 350, 200, 200)];
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.height /2;
+        profileImageView.layer.masksToBounds = YES;
+        profileImageView.layer.borderWidth = 0;
+        [profileImageView setImage:profilePic];
+        [self.view addSubview:profileImageView];        // task.result will be your game score
+        return task;
+    }];
+*/
+  /*  FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
      {
          if (!error)
@@ -42,12 +74,11 @@
              NSLog(@"User is in here");
              NSDictionary *userData = (NSDictionary *)result;
              NSString* facebookID = userData[@"id"];
-             
+           
              NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", facebookID]];
              NSData *data = [NSData dataWithContentsOfURL:url];
              UIImage *profilePic = [[UIImage alloc] initWithData:data];
              UIImageView* profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(85, 350, 200, 200)];
-            // UIImageView* profileImageView = [[UIImageView alloc] init];
              profileImageView.layer.cornerRadius = profileImageView.frame.size.height /2;
              profileImageView.layer.masksToBounds = YES;
              profileImageView.layer.borderWidth = 0;
@@ -62,14 +93,15 @@
 
         }
      }];
-
+*/
     //self.logInController = [[LoginViewController alloc] init];
     self.welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 75, 300, 75)];
     [self.welcomeLabel setFont:[UIFont fontWithName:@"Avenir Next" size:25.0]];
     [self.welcomeLabel setTextColor:[UIColor whiteColor]];
     [self.welcomeLabel setBackgroundColor:[UIColor clearColor]];
     NSString* welcomeString = @"Welcome, ";
-    welcomeString = [welcomeString stringByAppendingString:self.name];
+    //NSLog(self.name);
+    //welcomeString = [welcomeString stringByAppendingString:self.name];
     //[welcomeString appendString:userFirstName];
     [self.welcomeLabel setText:welcomeString];
     [self.view addSubview:self.welcomeLabel];
