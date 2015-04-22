@@ -35,7 +35,7 @@
     }];    //NSString* userFirstName = [theUser objectForKey:@"first_name"];
   */
     self.name = self.user[@"first_name"];
-    NSString* urlString = self.user[@"pictureLink"];
+ /*   NSString* urlString = self.user[@"pictureLink"];
     NSURL* url = [NSURL URLWithString:urlString];
     NSLog(urlString);
     NSData* data = [NSData dataWithContentsOfURL:url];
@@ -46,6 +46,7 @@
     profileImageView.layer.borderWidth = 0;
     [profileImageView setImage:profilePic];
     [self.view addSubview:profileImageView];
+  */
   /*  PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query fromLocalDatastore];
     [[query getObjectInBackgroundWithId:[self.user objectForKey:@"objectId"]] continueWithBlock:^id(BFTask *task) {
@@ -66,7 +67,7 @@
         return task;
     }];
 */
-  /*  FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
      {
          if (!error)
@@ -93,13 +94,13 @@
 
         }
      }];
-*/
+
     //self.logInController = [[LoginViewController alloc] init];
     self.welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 75, 300, 75)];
     [self.welcomeLabel setFont:[UIFont fontWithName:@"Avenir Next" size:25.0]];
     [self.welcomeLabel setTextColor:[UIColor whiteColor]];
     [self.welcomeLabel setBackgroundColor:[UIColor clearColor]];
-    NSString* welcomeString = @"Welcome, ";
+    NSString* welcomeString = [NSString stringWithFormat:@"Welcome, %@",self.name];
     //NSLog(self.name);
     //welcomeString = [welcomeString stringByAppendingString:self.name];
     //[welcomeString appendString:userFirstName];

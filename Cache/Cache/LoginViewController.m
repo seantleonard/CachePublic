@@ -105,7 +105,7 @@
                          
                      }
                  }];
-
+                
                 //[self _loadData];
                 //[[PFUser currentUser]setObject:self.full_name forKey:@"full_name"];
                 //[[PFUser currentUser]setObject:self.first_name forKey:@"first_name"];
