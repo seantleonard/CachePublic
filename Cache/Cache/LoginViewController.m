@@ -84,14 +84,31 @@
             else if (user.isNew)
             {
                 NSLog(@"User signed up and logged in through Facebook!");
-                [self _loadData];
-                [[PFUser currentUser]setObject:self.full_name forKey:@"full_name"];
-                [[PFUser currentUser]setObject:self.first_name forKey:@"first_name"];
+                //[self _loadData];
+                //[[PFUser currentUser]setObject:self.full_name forKey:@"full_name"];
+                //[[PFUser currentUser]setObject:self.first_name forKey:@"first_name"];
             }
             else
             {
                 NSLog(@"User logged in through Facebook!");
-                [self _loadData];
+                //[self _loadData];
+                FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+                [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
+                 {
+                        if (!error)
+                        {
+                            NSLog(@"User is in here");
+                            NSDictionary *userData = (NSDictionary *)result;
+                            
+                            //NSString *full_name = userData[@"name"];
+                            //NSString *first_name = userData[@"first_name"];
+                            
+                            [user setObject:userData[@"name"] forKey:@"full_name"];
+                            [user setObject:@"Sean Leonard" forKey:@"first_name"];
+                            [user save];
+
+                        }
+                }];
 //                [[PFUser currentUser]setObject:self.full_name forKey:@"full_name"];
 //                [[PFUser currentUser]setObject:self.first_name forKey:@"first_name"];
 //                NSLog(@"This is testing");
