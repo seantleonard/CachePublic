@@ -11,6 +11,8 @@
 
 @interface LoginViewController ()
 @property (strong, nonatomic) UILabel* loading;
+@property (weak, nonatomic) NSString* first_name;
+@property( weak, nonatomic) NSString* full_name;
 @end
 
 @implementation LoginViewController
@@ -53,9 +55,6 @@
                           action:@selector(fbLogIn)
                 forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -85,11 +84,18 @@
             else if (user.isNew)
             {
                 NSLog(@"User signed up and logged in through Facebook!");
+                [self _loadData];
+                [[PFUser currentUser]setObject:self.full_name forKey:@"full_name"];
+                [[PFUser currentUser]setObject:self.first_name forKey:@"first_name"];
             }
             else
             {
                 NSLog(@"User logged in through Facebook!");
                 [self _loadData];
+//                [[PFUser currentUser]setObject:self.full_name forKey:@"full_name"];
+//                [[PFUser currentUser]setObject:self.first_name forKey:@"first_name"];
+//                NSLog(@"This is testing");
+//                NSLog(self.full_name);
                 [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
             }
        }];
@@ -113,20 +119,21 @@
             NSDictionary *userData = (NSDictionary *)result;
             
             NSString *facebookID = userData[@"id"];
-            NSString *name = userData[@"name"];
-            NSString *gender = userData[@"gender"];
+            NSString *full_name = userData[@"name"];
             NSString *first_name = userData[@"first_name"];
             
             NSLog(facebookID);
-            NSLog(name);
+            NSLog(full_name);
             NSLog(first_name);
-            NSLog(gender);
-
+        
+            self.first_name = first_name;
+            self.full_name = full_name;
             
-            PFObject *userObject = [PFObject objectWithClassName:@"User"];
+            /*PFObject *userObject = [PFObject objectWithClassName:@"User"];
             userObject[@"first_name"] = first_name;
-            userObject[@"full_name"] = name;
-            [userObject saveInBackground];
+            userObject[@"full_name"] = full_name;
+            [userObject saveInBackground]; 
+             */
             
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
             
