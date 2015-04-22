@@ -20,7 +20,11 @@
     [self _loadData];
     //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     //[self.view addSubview:backgroundView];
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+   // FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    UIButton* loginButton = [[UIButton alloc] init];
+    [loginButton setFrame:CGRectMake(150, 200, 75, 25)];
+    [loginButton setBackgroundColor:[self colorWithHexString:@"3b5998"]];
+    [loginButton setTitle:@"Login with Facebook" forState:UIControlStateNormal];
     //loginButton.center = self.view.center;
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     [backgroundImageView setFrame:CGRectMake(0, 0, 380, 675)];
@@ -45,6 +49,9 @@
     [iconImageView setImage:iconImage];
     [self.view addSubview:iconImageView];
     loginButton.frame = CGRectMake(55, 500, 271, 37);
+    [loginButton addTarget:self
+                          action:@selector(fbLogIn)
+                forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
     testObject[@"foo"] = @"bar";
@@ -56,7 +63,7 @@
 {
         NSLog(@"In the login function");
         // Set permissions required from the facebook user account
-        NSArray *permissionsArray = @[ @"user_about_me", @"user_relationships", @"user_birthday", @"user_location"];
+        NSArray *permissionsArray = @[ @"public_profile", @"email", @"user_friends"];
     
     
         // Login PFUser using Facebook
@@ -106,10 +113,19 @@
             
             NSString *facebookID = userData[@"id"];
             NSString *name = userData[@"name"];
-            NSString *location = userData[@"location"][@"name"];
             NSString *gender = userData[@"gender"];
-            NSString *birthday = userData[@"birthday"];
-            NSString *relationship = userData[@"relationship_status"];
+            NSString *first_name = userData[@"first_name"];
+            
+            NSLog(facebookID);
+            NSLog(name);
+            NSLog(first_name);
+            NSLog(gender);
+
+            
+            PFObject *userObject = [PFObject objectWithClassName:@"User"];
+            userObject[@"first_name"] = first_name;
+            userObject[@"full_name"] = name;
+            [userObject saveInBackground];
             
             NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
             
@@ -131,6 +147,43 @@
         }
     }];
 }
+
+-(UIColor*)colorWithHexString:(NSString*)hex
+{
+    NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    
+    // String should be 6 or 8 characters
+    if ([cString length] < 6) return [UIColor grayColor];
+    
+    // strip 0X if it appears
+    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+    
+    if ([cString length] != 6) return  [UIColor grayColor];
+    
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    NSString *rString = [cString substringWithRange:range];
+    
+    range.location = 2;
+    NSString *gString = [cString substringWithRange:range];
+    
+    range.location = 4;
+    NSString *bString = [cString substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    return [UIColor colorWithRed:((float) r / 255.0f)
+                           green:((float) g / 255.0f)
+                            blue:((float) b / 255.0f)
+                           alpha:1.0f];
+}
+
 
 
 - (void)didReceiveMemoryWarning {
