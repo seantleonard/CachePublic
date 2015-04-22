@@ -15,6 +15,7 @@
 @property (retain, nonatomic) UILabel* welcomeLabel;
 @property LoginViewController* logInController;
 @property PFUser* user;
+@property NSString* name;
 
 @end
 
@@ -22,10 +23,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.user = [PFUser currentUser];
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     [backgroundImageView setFrame:CGRectMake(0, 0, 380, 675)];
     [self.view addSubview:backgroundImageView];
-    self.user = [PFUser currentUser];
+  /*  PFQuery *query = [PFQuery queryWithClassName:@"_User"];
+    [query getObjectInBackgroundWithId:@"dfBWrcNBHF" block:^(PFObject *user, NSError *error) {
+        // Do something with the returned PFObject in the gameScore variable.
+        self.name = user[@"first_name"];
+    }];    //NSString* userFirstName = [theUser objectForKey:@"first_name"];
+  */
+    self.name = self.user[@"first_name"];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
      {
@@ -60,7 +68,10 @@
     [self.welcomeLabel setFont:[UIFont fontWithName:@"Avenir Next" size:25.0]];
     [self.welcomeLabel setTextColor:[UIColor whiteColor]];
     [self.welcomeLabel setBackgroundColor:[UIColor clearColor]];
-    [self.welcomeLabel setText:@"Welcome to Cache"];
+    NSString* welcomeString = @"Welcome, ";
+    welcomeString = [welcomeString stringByAppendingString:self.name];
+    //[welcomeString appendString:userFirstName];
+    [self.welcomeLabel setText:welcomeString];
     [self.view addSubview:self.welcomeLabel];
     NSLog(@"View did load");
     self.logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
