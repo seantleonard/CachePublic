@@ -22,6 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+    [backgroundImageView setFrame:CGRectMake(0, 0, 380, 675)];
+    [self.view addSubview:backgroundImageView];
     self.user = [PFUser currentUser];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
