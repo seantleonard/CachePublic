@@ -14,6 +14,7 @@
 @property (weak, nonatomic) UIButton* logoutButton;
 @property (retain, nonatomic) UILabel* welcomeLabel;
 @property LoginViewController* logInController;
+@property PFUser* user;
 
 @end
 
@@ -21,6 +22,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.user = [PFUser currentUser];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
+     {
+         if (!error)
+         {
+             NSLog(@"User is in here");
+             NSDictionary *userData = (NSDictionary *)result;
+             NSString* facebookID = userData[@"id"];
+             
+             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", facebookID]];
+             NSData *data = [NSData dataWithContentsOfURL:url];
+             UIImage *profilePic = [[UIImage alloc] initWithData:data];
+             UIImageView* profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(85, 350, 200, 200)];
+            // UIImageView* profileImageView = [[UIImageView alloc] init];
+             profileImageView.layer.cornerRadius = profileImageView.frame.size.height /2;
+             profileImageView.layer.masksToBounds = YES;
+             profileImageView.layer.borderWidth = 0;
+             [profileImageView setImage:profilePic];
+             [self.view addSubview:profileImageView];
+             
+             
+            // profileImageView.frame = CGRectMake(0, 0, 250, 200);
+            // [self.view addSubview:profileImageView];
+
+             
+
+        }
+     }];
+
     //self.logInController = [[LoginViewController alloc] init];
     self.welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 75, 300, 75)];
     [self.welcomeLabel setFont:[UIFont fontWithName:@"Avenir Next" size:25.0]];

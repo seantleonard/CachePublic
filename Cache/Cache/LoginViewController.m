@@ -19,7 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self _loadData];
     //UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     //[self.view addSubview:backgroundView];
    // FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
@@ -84,6 +83,24 @@
             else if (user.isNew)
             {
                 NSLog(@"User signed up and logged in through Facebook!");
+                FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+                [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
+                 {
+                     if (!error)
+                     {
+                         NSLog(@"User is in here");
+                         NSDictionary *userData = (NSDictionary *)result;
+                         
+                         //NSString *full_name = userData[@"name"];
+                         //NSString *first_name = userData[@"first_name"];
+                         
+                         [user setObject:userData[@"name"] forKey:@"full_name"];
+                         [user setObject:userData[@"first_name"] forKey:@"first_name"];
+                         [user save];
+                         
+                     }
+                 }];
+
                 //[self _loadData];
                 //[[PFUser currentUser]setObject:self.full_name forKey:@"full_name"];
                 //[[PFUser currentUser]setObject:self.first_name forKey:@"first_name"];
@@ -99,12 +116,32 @@
                         {
                             NSLog(@"User is in here");
                             NSDictionary *userData = (NSDictionary *)result;
+                            NSString* facebookID = userData[@"id"];
                             
                             //NSString *full_name = userData[@"name"];
                             //NSString *first_name = userData[@"first_name"];
                             
+                            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+                            
+                            NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+                            
+                            // Run network request asynchronously
+                            [NSURLConnection sendAsynchronousRequest:urlRequest
+                                                               queue:[NSOperationQueue mainQueue]
+                                                   completionHandler:
+                             ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                                 if (connectionError == nil && data != nil) {
+                                     UIImage *profilePicture = [UIImage imageWithData:data];
+                                     UIImageView* profileImageView = [[UIImageView alloc] initWithImage:profilePicture];
+                                     profileImageView.frame = CGRectMake(0, 0, 250, 200);
+                                     [self.view addSubview:profileImageView];
+                                 }
+                             }];
+                            
+
+                            
                             [user setObject:userData[@"name"] forKey:@"full_name"];
-                            [user setObject:@"Sean Leonard" forKey:@"first_name"];
+                            [user setObject:userData[@"first_name"] forKey:@"first_name"];
                             [user save];
 
                         }
@@ -124,7 +161,7 @@
 {
     [self _loginWithFacebook];
 }
-
+/*
 - (void)_loadData {
     // ...
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
@@ -146,13 +183,13 @@
             self.first_name = first_name;
             self.full_name = full_name;
             
-            /*PFObject *userObject = [PFObject objectWithClassName:@"User"];
+            PFObject *userObject = [PFObject objectWithClassName:@"User"];
             userObject[@"first_name"] = first_name;
             userObject[@"full_name"] = full_name;
             [userObject saveInBackground]; 
              */
             
-            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+       /*     NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
             
             NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
             
@@ -170,8 +207,10 @@
             // Now add the data to the UI elements
             // ...
         }
+
     }];
 }
+*/
 
 -(UIColor*)colorWithHexString:(NSString*)hex
 {
