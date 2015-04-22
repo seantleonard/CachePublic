@@ -14,5 +14,6 @@
 @interface HomeViewController : UIViewController
 
 -(void) logout;
+-(void) wantShow;
 
 @end

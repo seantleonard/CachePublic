@@ -8,12 +8,15 @@
 
 #import "HomeViewController.h"
 #import "LoginViewController.h"
+#import "WantsViewController.h"
 
 @interface HomeViewController ()
 
 @property (weak, nonatomic) UIButton* logoutButton;
+@property (weak, nonatomic) UIButton* wantViewButton;
 @property (retain, nonatomic) UILabel* welcomeLabel;
 @property LoginViewController* logInController;
+@property WantsViewController* wantController;
 @property PFUser* user;
 @property NSString* name;
 
@@ -23,11 +26,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (![PFUser currentUser]){
+        self.logInController = [[LoginViewController alloc] init];
+        [self presentViewController:self.logInController animated:YES completion:nil];
+        
+        
+       
+    }
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
     [backgroundImageView setFrame:CGRectMake(0, 0, 380, 675)];
     [self.view addSubview:backgroundImageView];
     self.user = [PFUser currentUser];
-    
+  
   /*  PFQuery *query = [PFQuery queryWithClassName:@"_User"];
     [query getObjectInBackgroundWithId:@"dfBWrcNBHF" block:^(PFObject *user, NSError *error) {
         // Do something with the returned PFObject in the gameScore variable.
@@ -107,14 +118,27 @@
     [self.welcomeLabel setText:welcomeString];
     [self.view addSubview:self.welcomeLabel];
     NSLog(@"View did load");
+    
+    //Add the Log Out button to the screen
     self.logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.logoutButton setFrame:CGRectMake(150, 200, 75, 25)];
+    [self.logoutButton setFrame:CGRectMake(150, 250, 75, 25)];
     [self.logoutButton addTarget:self
                           action:@selector(logout)
                 forControlEvents:UIControlEventTouchUpInside];
     [self.logoutButton setBackgroundColor:[self colorWithHexString:@"3b5998"]];
     [self.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
     [self.view addSubview:self.logoutButton];
+    
+    //Add the want view button to the screen
+    self.wantViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.wantViewButton setFrame:CGRectMake(150, 200, 100, 25)];
+    [self.wantViewButton addTarget:self
+                          action:@selector(wantShow)
+                forControlEvents:UIControlEventTouchUpInside];
+    [self.wantViewButton setBackgroundColor:[self colorWithHexString:@"3b5998"]];
+    [self.wantViewButton setTitle:@"My Wants" forState:UIControlStateNormal];
+    [self.view addSubview:self.wantViewButton];
+
     // Do any additional setup after loading the view.
 }
 
@@ -156,6 +180,13 @@
     
     
     
+}
+
+-(void) wantShow
+{
+    self.wantController = [[WantsViewController alloc] init];
+    [self presentViewController:self.wantController animated:YES completion:nil];
+
 }
 
 

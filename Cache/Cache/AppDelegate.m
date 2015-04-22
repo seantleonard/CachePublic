@@ -24,7 +24,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController= [HomeViewController new];
-    [Parse enableLocalDatastore];
+   // [Parse enableLocalDatastore];
     
     // Initialize Parse.
     [Parse setApplicationId:@"zWQ2UIVsr9UrrMt2nvZKwFuE3iVq2WtO3FoSHjGZ"
