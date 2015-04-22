@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.logInController = [[LoginViewController alloc] init];
+    //self.logInController = [[LoginViewController alloc] init];
     self.welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 75, 300, 75)];
     [self.welcomeLabel setFont:[UIFont fontWithName:@"Avenir Next" size:25.0]];
     [self.welcomeLabel setTextColor:[UIColor whiteColor]];
@@ -60,6 +60,7 @@
     NSLog(@"VIEW DID APPEAR");
     [super viewDidAppear:animated];
     
+    
   /*  if (!([PFUser currentUser] && // Check if user is cached
         [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]))
     {
@@ -75,7 +76,11 @@
    */
     
     
+    
+    
 }
+
+
 
 - (void) logout
 {
@@ -134,6 +139,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation
