@@ -7,4 +7,7 @@
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:../../../iOSDev/semantics3-objc/semantics3-objc.xcodeproj">
+   </FileRef>
 </Workspace>

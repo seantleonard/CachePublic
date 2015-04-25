@@ -9,13 +9,17 @@
 #import "HomeViewController.h"
 #import "LoginViewController.h"
 #import "WantsViewController.h"
+#import "ProductSearchViewController.h"
 
 @interface HomeViewController ()
 
 @property (weak, nonatomic) UIButton* logoutButton;
 @property (weak, nonatomic) UIButton* wantViewButton;
+@property (weak, nonatomic) UIButton* productSearchViewButton;
 @property (retain, nonatomic) UILabel* welcomeLabel;
 @property LoginViewController* logInController;
+@property ProductSearchViewController* prodSearchController;
+@property UINavigationController* navC;
 @property WantsViewController* wantController;
 @property PFUser* user;
 @property NSString* name;
@@ -129,6 +133,16 @@
     [self.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
     [self.view addSubview:self.logoutButton];
     
+    //Add the Product Search button to the screen
+    self.productSearchViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.productSearchViewButton setFrame:CGRectMake(150, 300, 150, 25)];
+    [self.productSearchViewButton addTarget:self
+                          action:@selector(searchPage)
+                forControlEvents:UIControlEventTouchUpInside];
+    [self.productSearchViewButton setBackgroundColor:[self colorWithHexString:@"3b5998"]];
+    [self.productSearchViewButton setTitle:@"Product Search" forState:UIControlStateNormal];
+    [self.view addSubview:self.productSearchViewButton];
+    
     //Add the want view button to the screen
     self.wantViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.wantViewButton setFrame:CGRectMake(150, 200, 100, 25)];
@@ -184,8 +198,20 @@
 
 -(void) wantShow
 {
+    
+    
     self.wantController = [[WantsViewController alloc] init];
-    [self presentViewController:self.wantController animated:YES completion:nil];
+    //self.wantController =
+    
+    //UIViewController *foo = [[UIViewController alloc] initWithNibName:@"PopoverView" bundle:nil];
+    // Here you pass through properties if you need too.
+    // ...
+    self.navC = [[UINavigationController alloc] initWithRootViewController: self.wantController ];
+  //  self.navC = [initWithNavigationBarClass: ];
+   // [self.wantController release];
+    
+    [self presentViewController:self.navC animated:YES completion:nil];
+    //[self presentViewController:self. animated:YES completion:nil];
 
 }
 
@@ -197,6 +223,13 @@
     NSLog(@"Logged out");
     self.logInController = [[LoginViewController alloc] init];
     [self presentViewController:self.logInController animated:YES completion:nil];
+}
+
+- (void) searchPage
+{
+   
+    self.prodSearchController = [[ProductSearchViewController alloc] init];
+    [self presentViewController:self.prodSearchController animated:YES completion:nil];
 }
      
 -(UIColor*)colorWithHexString:(NSString*)hex

@@ -9,7 +9,7 @@
 #import "WantsViewController.h"
 
 @interface WantsViewController ()
-
+    @property(nonatomic, copy) NSString *title;
 @end
 
 @implementation WantsViewController
@@ -26,7 +26,7 @@
         self.textKey = @"prod_name";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
-        // self.imageKey = @"image";
+      //   self.imageKey = @"prod_img_link";
         
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
@@ -52,6 +52,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setTitle:@"My Wants"];
+    
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(returnToHome)];
+    self.navigationItem.rightBarButtonItem = anotherButton;
+    //[anotherButton release];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -64,6 +69,10 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+-(void)returnToHome{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -138,8 +147,15 @@
  }
  
  // Configure the cell
- cell.textLabel.text = [object objectForKey:self.textKey];
- cell.imageView.file = [object objectForKey:self.imageKey];
+     
+     //NSMutableString *textLabel = [[NSMutableString alloc] init];
+    // textLabel = [object objectForKey:self.textKey];
+     //[textLabel appendString: [object objectForKey:@"prod_price"]];
+     
+     NSString *textLabel = [NSString stringWithFormat:@"%@ $%@", [object objectForKey:self.textKey], [object objectForKey:@"prod_price"]];
+
+     cell.textLabel.text = textLabel;
+ //cell.imageView.file = [object objectForKey:self.imageKey];
  
  return cell;
  }
@@ -208,8 +224,8 @@
 
 #pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+//}
 
 @end

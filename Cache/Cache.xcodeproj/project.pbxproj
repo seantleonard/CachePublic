@@ -18,6 +18,9 @@
 		13FE669A1AE71AF900F1518F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FE66991AE71AF900F1518F /* User.m */; };
 		140649F01AE82E6B0087D10E /* WantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140649EF1AE82E6B0087D10E /* WantsViewController.m */; };
 		140649F31AE8310C0087D10E /* WantsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140649F21AE8310C0087D10E /* WantsTableViewCell.m */; };
+		1461B0E41AEB6F4B00632D3B /* ProductSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1461B0E31AEB6F4B00632D3B /* ProductSearchViewController.m */; };
+		1461B0E61AEB6FE300632D3B /* ProductSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1461B0E51AEB6FE300632D3B /* ProductSearchViewController.xib */; };
+		149DF8C61AEB834000EADB9D /* libsemantics3-objc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 149DF8C51AEB834000EADB9D /* libsemantics3-objc.a */; };
 		1E66A3737958AA512B529507 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DD7278D19C583E1D78F949 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +56,10 @@
 		140649EF1AE82E6B0087D10E /* WantsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantsViewController.m; sourceTree = "<group>"; };
 		140649F11AE8310C0087D10E /* WantsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantsTableViewCell.h; sourceTree = "<group>"; };
 		140649F21AE8310C0087D10E /* WantsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WantsTableViewCell.m; sourceTree = "<group>"; };
+		1461B0E21AEB6F4B00632D3B /* ProductSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductSearchViewController.h; sourceTree = "<group>"; };
+		1461B0E31AEB6F4B00632D3B /* ProductSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductSearchViewController.m; sourceTree = "<group>"; };
+		1461B0E51AEB6FE300632D3B /* ProductSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductSearchViewController.xib; sourceTree = "<group>"; };
+		149DF8C51AEB834000EADB9D /* libsemantics3-objc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libsemantics3-objc.a"; path = "../../../iOSDev/semantics3-objc/build/Debug-iphoneos/libsemantics3-objc.a"; sourceTree = "<group>"; };
 		5A03397C85E524BA465B7024 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E1E2B3B1102C063C46B590AC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F2DD7278D19C583E1D78F949 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				149DF8C61AEB834000EADB9D /* libsemantics3-objc.a in Frameworks */,
 				1E66A3737958AA512B529507 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +118,9 @@
 				140649EF1AE82E6B0087D10E /* WantsViewController.m */,
 				140649F11AE8310C0087D10E /* WantsTableViewCell.h */,
 				140649F21AE8310C0087D10E /* WantsTableViewCell.m */,
+				1461B0E21AEB6F4B00632D3B /* ProductSearchViewController.h */,
+				1461B0E31AEB6F4B00632D3B /* ProductSearchViewController.m */,
+				1461B0E51AEB6FE300632D3B /* ProductSearchViewController.xib */,
 				13FE66981AE71AF900F1518F /* User.h */,
 				13FE66991AE71AF900F1518F /* User.m */,
 				134E21571AE5B8C600806BEB /* Main.storyboard */,
@@ -158,6 +169,7 @@
 		CD223A1589FE82D987796A16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				149DF8C51AEB834000EADB9D /* libsemantics3-objc.a */,
 				F2DD7278D19C583E1D78F949 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -247,6 +259,7 @@
 			files = (
 				134E21591AE5B8C600806BEB /* Main.storyboard in Resources */,
 				134E215E1AE5B8C600806BEB /* LaunchScreen.xib in Resources */,
+				1461B0E61AEB6FE300632D3B /* ProductSearchViewController.xib in Resources */,
 				134E215B1AE5B8C600806BEB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +317,7 @@
 				134E21501AE5B8C600806BEB /* main.m in Sources */,
 				140649F31AE8310C0087D10E /* WantsTableViewCell.m in Sources */,
 				140649F01AE82E6B0087D10E /* WantsViewController.m in Sources */,
+				1461B0E41AEB6F4B00632D3B /* ProductSearchViewController.m in Sources */,
 				1388FCBA1AE6E28900329AA5 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +449,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cache/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Sean/Documents/iOSDev/semantics3-objc/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -446,6 +464,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cache/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/Sean/Documents/iOSDev/semantics3-objc/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
