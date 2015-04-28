@@ -38,7 +38,7 @@
         
        
     }
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home screen"]];
     [backgroundImageView setFrame:CGRectMake(0, 0, 380, 675)];
     [self.view addSubview:backgroundImageView];
     self.user = [PFUser currentUser];
@@ -82,7 +82,7 @@
         return task;
     }];
 */
-    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+/*    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
      {
          if (!error)
@@ -109,10 +109,11 @@
 
         }
      }];
+ */
 
     //self.logInController = [[LoginViewController alloc] init];
     self.welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 75, 300, 75)];
-    [self.welcomeLabel setFont:[UIFont fontWithName:@"Avenir Next" size:25.0]];
+    [self.welcomeLabel setFont:[UIFont fontWithName:@"Avenir" size:30]];
     [self.welcomeLabel setTextColor:[UIColor whiteColor]];
     [self.welcomeLabel setBackgroundColor:[UIColor clearColor]];
     NSString* welcomeString = [NSString stringWithFormat:@"Welcome, %@",self.name];
@@ -131,7 +132,7 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.logoutButton setBackgroundColor:[self colorWithHexString:@"3b5998"]];
     [self.logoutButton setTitle:@"Logout" forState:UIControlStateNormal];
-    [self.view addSubview:self.logoutButton];
+  //  [self.view addSubview:self.logoutButton];
     
     //Add the Product Search button to the screen
     self.productSearchViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -141,7 +142,7 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.productSearchViewButton setBackgroundColor:[self colorWithHexString:@"3b5998"]];
     [self.productSearchViewButton setTitle:@"Product Search" forState:UIControlStateNormal];
-    [self.view addSubview:self.productSearchViewButton];
+  //  [self.view addSubview:self.productSearchViewButton];
     
     //Add the want view button to the screen
     self.wantViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -151,7 +152,7 @@
                 forControlEvents:UIControlEventTouchUpInside];
     [self.wantViewButton setBackgroundColor:[self colorWithHexString:@"3b5998"]];
     [self.wantViewButton setTitle:@"My Wants" forState:UIControlStateNormal];
-    [self.view addSubview:self.wantViewButton];
+   // [self.view addSubview:self.wantViewButton];
 
     // Do any additional setup after loading the view.
 }

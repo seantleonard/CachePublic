@@ -22,8 +22,8 @@
     // https://parse.com/docs/ios_guide#localdatastore/iOS
     //Override point for customization after application launch.
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController= [HomeViewController new];
+   // self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+   // self.window.rootViewController= [HomeViewController new];
    // [Parse enableLocalDatastore];
     
     // Initialize Parse.

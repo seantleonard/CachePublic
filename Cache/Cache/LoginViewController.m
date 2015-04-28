@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "HomeViewController.h"
+#import "ChooseBankViewController.h"
 
 @interface LoginViewController ()
 @property (strong, nonatomic) UILabel* loading;
@@ -61,6 +61,7 @@
 {
         NSLog(@"In the login function");
         // Set permissions required from the facebook user account
+   /*
         NSArray *permissionsArray = @[ @"public_profile", @"email", @"user_friends"];
     
     
@@ -143,7 +144,7 @@
                                  }
                              }];
                             
-*/
+
                             
                             [user setObject:userData[@"name"] forKey:@"full_name"];
                             [user setObject:userData[@"first_name"] forKey:@"first_name"];
@@ -158,8 +159,9 @@
                 [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
             }
        }];
-    HomeViewController *HVC = [[HomeViewController alloc] init];
-    [self presentViewController:HVC animated:YES completion:nil];
+*/
+    ChooseBankViewController *CBVC = [[ChooseBankViewController alloc] init];
+    [self presentViewController:CBVC animated:YES completion:nil];
 }
 
 -(void) fbLogIn

@@ -14,6 +14,8 @@
 		134E215B1AE5B8C600806BEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 134E215A1AE5B8C600806BEB /* Images.xcassets */; };
 		134E215E1AE5B8C600806BEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 134E215C1AE5B8C600806BEB /* LaunchScreen.xib */; };
 		134E216A1AE5B8C600806BEB /* CacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E21691AE5B8C600806BEB /* CacheTests.m */; };
+		134E78A71AEF204300D2C44C /* ChooseBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E78A61AEF204300D2C44C /* ChooseBankViewController.m */; };
+		134E78AC1AEF273400D2C44C /* ConnectAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E78AB1AEF273400D2C44C /* ConnectAccountViewController.m */; };
 		1388FCBA1AE6E28900329AA5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1388FCB91AE6E28900329AA5 /* HomeViewController.m */; };
 		13FE669A1AE71AF900F1518F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FE66991AE71AF900F1518F /* User.m */; };
 		140649F01AE82E6B0087D10E /* WantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140649EF1AE82E6B0087D10E /* WantsViewController.m */; };
@@ -48,6 +50,10 @@
 		134E21631AE5B8C600806BEB /* CacheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CacheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		134E21681AE5B8C600806BEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		134E21691AE5B8C600806BEB /* CacheTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheTests.m; sourceTree = "<group>"; };
+		134E78A51AEF204300D2C44C /* ChooseBankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseBankViewController.h; sourceTree = "<group>"; };
+		134E78A61AEF204300D2C44C /* ChooseBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseBankViewController.m; sourceTree = "<group>"; };
+		134E78AA1AEF273400D2C44C /* ConnectAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectAccountViewController.h; sourceTree = "<group>"; };
+		134E78AB1AEF273400D2C44C /* ConnectAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectAccountViewController.m; sourceTree = "<group>"; };
 		1388FCB81AE6E28900329AA5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		1388FCB91AE6E28900329AA5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		13FE66981AE71AF900F1518F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -112,6 +118,10 @@
 				134E21521AE5B8C600806BEB /* AppDelegate.m */,
 				134E21541AE5B8C600806BEB /* LoginViewController.h */,
 				134E21551AE5B8C600806BEB /* LoginViewController.m */,
+				134E78A51AEF204300D2C44C /* ChooseBankViewController.h */,
+				134E78A61AEF204300D2C44C /* ChooseBankViewController.m */,
+				134E78AA1AEF273400D2C44C /* ConnectAccountViewController.h */,
+				134E78AB1AEF273400D2C44C /* ConnectAccountViewController.m */,
 				1388FCB81AE6E28900329AA5 /* HomeViewController.h */,
 				1388FCB91AE6E28900329AA5 /* HomeViewController.m */,
 				140649EE1AE82E6B0087D10E /* WantsViewController.h */,
@@ -312,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13FE669A1AE71AF900F1518F /* User.m in Sources */,
+				134E78A71AEF204300D2C44C /* ChooseBankViewController.m in Sources */,
 				134E21561AE5B8C600806BEB /* LoginViewController.m in Sources */,
 				134E21531AE5B8C600806BEB /* AppDelegate.m in Sources */,
 				134E21501AE5B8C600806BEB /* main.m in Sources */,
@@ -319,6 +330,7 @@
 				140649F01AE82E6B0087D10E /* WantsViewController.m in Sources */,
 				1461B0E41AEB6F4B00632D3B /* ProductSearchViewController.m in Sources */,
 				1388FCBA1AE6E28900329AA5 /* HomeViewController.m in Sources */,
+				134E78AC1AEF273400D2C44C /* ConnectAccountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
