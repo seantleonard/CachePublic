@@ -17,6 +17,8 @@
 		134E78A71AEF204300D2C44C /* ChooseBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E78A61AEF204300D2C44C /* ChooseBankViewController.m */; };
 		134E78AC1AEF273400D2C44C /* ConnectAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E78AB1AEF273400D2C44C /* ConnectAccountViewController.m */; };
 		1388FCBA1AE6E28900329AA5 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1388FCB91AE6E28900329AA5 /* HomeViewController.m */; };
+		13B724DA1AF0448B00285B06 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B724D91AF0448B00285B06 /* MenuViewController.m */; };
+		13B724DD1AF06E9600285B06 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B724DC1AF06E9600285B06 /* CalendarViewController.m */; };
 		13FE669A1AE71AF900F1518F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FE66991AE71AF900F1518F /* User.m */; };
 		140649F01AE82E6B0087D10E /* WantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140649EF1AE82E6B0087D10E /* WantsViewController.m */; };
 		140649F31AE8310C0087D10E /* WantsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140649F21AE8310C0087D10E /* WantsTableViewCell.m */; };
@@ -56,6 +58,10 @@
 		134E78AB1AEF273400D2C44C /* ConnectAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectAccountViewController.m; sourceTree = "<group>"; };
 		1388FCB81AE6E28900329AA5 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		1388FCB91AE6E28900329AA5 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		13B724D81AF0448B00285B06 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		13B724D91AF0448B00285B06 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		13B724DB1AF06E9600285B06 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		13B724DC1AF06E9600285B06 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		13FE66981AE71AF900F1518F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		13FE66991AE71AF900F1518F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		140649EE1AE82E6B0087D10E /* WantsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WantsViewController.h; sourceTree = "<group>"; };
@@ -124,12 +130,16 @@
 				134E78AB1AEF273400D2C44C /* ConnectAccountViewController.m */,
 				1388FCB81AE6E28900329AA5 /* HomeViewController.h */,
 				1388FCB91AE6E28900329AA5 /* HomeViewController.m */,
+				13B724D81AF0448B00285B06 /* MenuViewController.h */,
+				13B724D91AF0448B00285B06 /* MenuViewController.m */,
 				140649EE1AE82E6B0087D10E /* WantsViewController.h */,
 				140649EF1AE82E6B0087D10E /* WantsViewController.m */,
 				140649F11AE8310C0087D10E /* WantsTableViewCell.h */,
 				140649F21AE8310C0087D10E /* WantsTableViewCell.m */,
 				1461B0E21AEB6F4B00632D3B /* ProductSearchViewController.h */,
 				1461B0E31AEB6F4B00632D3B /* ProductSearchViewController.m */,
+				13B724DB1AF06E9600285B06 /* CalendarViewController.h */,
+				13B724DC1AF06E9600285B06 /* CalendarViewController.m */,
 				1461B0E51AEB6FE300632D3B /* ProductSearchViewController.xib */,
 				13FE66981AE71AF900F1518F /* User.h */,
 				13FE66991AE71AF900F1518F /* User.m */,
@@ -325,11 +335,13 @@
 				134E78A71AEF204300D2C44C /* ChooseBankViewController.m in Sources */,
 				134E21561AE5B8C600806BEB /* LoginViewController.m in Sources */,
 				134E21531AE5B8C600806BEB /* AppDelegate.m in Sources */,
+				13B724DD1AF06E9600285B06 /* CalendarViewController.m in Sources */,
 				134E21501AE5B8C600806BEB /* main.m in Sources */,
 				140649F31AE8310C0087D10E /* WantsTableViewCell.m in Sources */,
 				140649F01AE82E6B0087D10E /* WantsViewController.m in Sources */,
 				1461B0E41AEB6F4B00632D3B /* ProductSearchViewController.m in Sources */,
 				1388FCBA1AE6E28900329AA5 /* HomeViewController.m in Sources */,
+				13B724DA1AF0448B00285B06 /* MenuViewController.m in Sources */,
 				134E78AC1AEF273400D2C44C /* ConnectAccountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

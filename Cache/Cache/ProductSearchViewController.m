@@ -8,6 +8,7 @@
 
 #import "ProductSearchViewController.h"
 #import <Parse/Parse.h>
+#import "CalendarViewController.h"
 #define OAUTH_KEY @"SEM3ACBC4E578B16EFAB32FDC51FA4AEBF1E"
 #define OAUTH_SECRET @"Nzc5ZjYwNzg4YjUzODAwMWQ0Njc1ODdhZDIwZTJjZDI"
 
@@ -107,6 +108,9 @@
             // There was a problem, check error.description
         }
     }];
+    CalendarViewController *CVC = [[CalendarViewController alloc] init];
+    [self presentViewController:CVC animated:YES completion:nil];
+
 }
 - (IBAction)addProd2{
     PFObject *userWant = [PFObject objectWithClassName:@"User_Wants"];
@@ -126,6 +130,9 @@
             // There was a problem, check error.description
         }
     }];
+    CalendarViewController *CVC = [[CalendarViewController alloc] init];
+    [self presentViewController:CVC animated:YES completion:nil];
+
     
 }
 - (IBAction)addProd3{
@@ -146,6 +153,9 @@
             // There was a problem, check error.description
         }
     }];
+    CalendarViewController *CVC = [[CalendarViewController alloc] init];
+    [self presentViewController:CVC animated:YES completion:nil];
+
     
 }
 

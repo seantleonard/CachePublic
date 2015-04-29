@@ -11,8 +11,8 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import "LogInViewController.h"
 
-@interface HomeViewController : UIViewController
-
+@interface HomeViewController : UIViewController 
+@property UIView* rectView;
 -(void) logout;
 -(void) wantShow;
 

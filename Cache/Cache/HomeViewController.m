@@ -10,19 +10,28 @@
 #import "LoginViewController.h"
 #import "WantsViewController.h"
 #import "ProductSearchViewController.h"
+#import "MenuViewController.h"
+
 
 @interface HomeViewController ()
 
 @property (weak, nonatomic) UIButton* logoutButton;
 @property (weak, nonatomic) UIButton* wantViewButton;
 @property (weak, nonatomic) UIButton* productSearchViewButton;
+@property (retain, nonatomic) UIButton* statusButton;
+@property (retain, nonatomic) UIButton* menuButton;
+@property (retain, nonatomic) UIButton* addButton;
 @property (retain, nonatomic) UILabel* welcomeLabel;
+@property (retain, nonatomic) UIImageView* menuImageView;
 @property LoginViewController* logInController;
 @property ProductSearchViewController* prodSearchController;
 @property UINavigationController* navC;
 @property WantsViewController* wantController;
 @property PFUser* user;
 @property NSString* name;
+@property NSInteger ovalNumber;
+@property MenuViewController *MVC;
+@property NSString* fullName;
 
 @end
 
@@ -30,13 +39,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.ovalNumber = 1;
+    self.MVC = [[MenuViewController alloc] init];
+
     if (![PFUser currentUser]){
         self.logInController = [[LoginViewController alloc] init];
         [self presentViewController:self.logInController animated:YES completion:nil];
-        
-        
-       
     }
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home screen"]];
     [backgroundImageView setFrame:CGRectMake(0, 0, 380, 675)];
@@ -82,35 +90,6 @@
         return task;
     }];
 */
-/*    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
-    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
-     {
-         if (!error)
-         {
-             NSLog(@"User is in here");
-             NSDictionary *userData = (NSDictionary *)result;
-             NSString* facebookID = userData[@"id"];
-           
-             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", facebookID]];
-             NSData *data = [NSData dataWithContentsOfURL:url];
-             UIImage *profilePic = [[UIImage alloc] initWithData:data];
-             UIImageView* profileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(85, 350, 200, 200)];
-             profileImageView.layer.cornerRadius = profileImageView.frame.size.height /2;
-             profileImageView.layer.masksToBounds = YES;
-             profileImageView.layer.borderWidth = 0;
-             [profileImageView setImage:profilePic];
-             [self.view addSubview:profileImageView];
-             
-             
-            // profileImageView.frame = CGRectMake(0, 0, 250, 200);
-            // [self.view addSubview:profileImageView];
-
-             
-
-        }
-     }];
- */
-
     //self.logInController = [[LoginViewController alloc] init];
     self.welcomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 75, 300, 75)];
     [self.welcomeLabel setFont:[UIFont fontWithName:@"Avenir" size:30]];
@@ -123,6 +102,92 @@
     [self.welcomeLabel setText:welcomeString];
     [self.view addSubview:self.welcomeLabel];
     NSLog(@"View did load");
+    
+    self.statusButton = [[UIButton alloc] initWithFrame:CGRectMake(40, 165, 300, 300)];
+    [self.statusButton setImage:[UIImage imageNamed:@"oval1"] forState:UIControlStateNormal];
+    [self.statusButton addTarget:self
+                          action:@selector(switchOval)
+                forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.statusButton];
+    NSString *pictureLink = self.user[@"pictureLink"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:pictureLink]];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    
+    UIImage *profilePic = [[UIImage alloc] initWithData:data];
+    self.menuImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 40, 100, 100)];
+    //self.menuImageView.contentMode = UIViewContentModeScaleAspectFit;
+    //self.menuImageView.clipsToBounds = YES;
+    self.menuImageView.layer.cornerRadius = self.menuImageView.frame.size.height /2;
+    self.menuImageView.layer.masksToBounds = YES;
+    self.menuImageView.layer.borderWidth = 0;
+    [self.menuImageView setImage:profilePic];
+    
+    [self.MVC setProfilePicture:self.menuImageView];
+    self.fullName = self.user[@"full_name"];
+    [self.MVC setUserName:self.fullName];
+
+   // [self.view addSubview:self.menuImageView];
+
+    //             NSData *data = [NSData dataWithContentsOfURL:url];
+    //             UIImage *profilePic = [[UIImage alloc] initWithData:data];
+    //             [self.menuImageView setImage:profilePic];
+    //             self.menuImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 40, 150, 150)];
+    //             self.menuImageView.layer.cornerRadius = self.menuImageView.frame.size.height /2;
+    //             self.menuImageView.layer.masksToBounds = YES;
+    //             self.menuImageView.layer.borderWidth = 0;
+    //             //[self.menuImageView setImage:profilePic];
+    //             [self.MVC setProfilePicture:self.menuImageView];
+    
+//    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil];
+//    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error)
+//     {
+//         if (!error)
+//         {
+//             NSLog(@"User is in here");
+//             NSDictionary *userData = (NSDictionary *)result;
+//             NSString* facebookID = userData[@"id"];
+//             
+//             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", facebookID]];
+//             NSData *data = [NSData dataWithContentsOfURL:url];
+//             UIImage *profilePic = [[UIImage alloc] initWithData:data];
+//             [self.menuImageView setImage:profilePic];
+//             self.menuImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 40, 150, 150)];
+//             self.menuImageView.layer.cornerRadius = self.menuImageView.frame.size.height /2;
+//             self.menuImageView.layer.masksToBounds = YES;
+//             self.menuImageView.layer.borderWidth = 0;
+//             //[self.menuImageView setImage:profilePic];
+//             [self.MVC setProfilePicture:self.menuImageView];
+//            // NSLog(@"DONE!!!!!");
+//             //[self.view addSubview:self.menuImageView];
+//             
+//             // profileImageView.frame = CGRectMake(0, 0, 250, 200);
+//             // [self.view addSubview:profileImageView];
+//         }
+//     }];
+    //[self.view addSubview:self.menuImageView];
+    
+   // [self.MVC setProfilePicture:self.menuImageView];
+
+    //UIImageView* menuImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"menu icon"]];
+    //[menuImageView setFrame:CGRectMake(10, 10, 20, 20)];
+    self.menuButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 29, 20, 20)];
+    [self.menuButton setImage:[UIImage imageNamed:@"menu icon"] forState:UIControlStateNormal];
+    [self.menuButton addTarget:self
+                        action:@selector(showMenu)
+                forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.menuButton];
+
+    self.addButton = [[UIButton alloc] initWithFrame:CGRectMake(345, 29, 20, 20)];
+    [self.addButton setImage:[UIImage imageNamed:@"plus icon"] forState:UIControlStateNormal];
+    [self.addButton addTarget:self
+                        action:@selector(search)
+              forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.addButton];
+
+    
+    //UIImageView *ovalImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"oval1"]];
+    //[ovalImageView setFrame:CGRectMake(40, 165, 300, 300)];
+    //[self.view addSubview:ovalImageView];
     
     //Add the Log Out button to the screen
     self.logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -155,6 +220,28 @@
    // [self.view addSubview:self.wantViewButton];
 
     // Do any additional setup after loading the view.
+}
+
+-(void) showMenu
+{
+    //MenuViewController *MVC = [[MenuViewController alloc] init];
+    [self presentViewController:self.MVC animated:YES completion:nil];
+    
+}
+
+-(void) switchOval
+{
+    if (self.ovalNumber == 1)
+    {
+        [self.statusButton setImage:[UIImage imageNamed:@"oval2"] forState:UIControlStateNormal];
+        self.ovalNumber = 0;
+    }
+    
+    else
+    {
+        [self.statusButton setImage:[UIImage imageNamed:@"oval1"] forState:UIControlStateNormal];
+        self.ovalNumber = 1;
+    }
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -192,28 +279,6 @@
     }
    */
     
-    
-    
-    
-}
-
--(void) wantShow
-{
-    
-    
-    self.wantController = [[WantsViewController alloc] init];
-    //self.wantController =
-    
-    //UIViewController *foo = [[UIViewController alloc] initWithNibName:@"PopoverView" bundle:nil];
-    // Here you pass through properties if you need too.
-    // ...
-    self.navC = [[UINavigationController alloc] initWithRootViewController: self.wantController ];
-  //  self.navC = [initWithNavigationBarClass: ];
-   // [self.wantController release];
-    
-    [self presentViewController:self.navC animated:YES completion:nil];
-    //[self presentViewController:self. animated:YES completion:nil];
-
 }
 
 
@@ -226,7 +291,7 @@
     [self presentViewController:self.logInController animated:YES completion:nil];
 }
 
-- (void) searchPage
+- (void) search
 {
    
     self.prodSearchController = [[ProductSearchViewController alloc] init];

@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "ChooseBankViewController.h"
+#import "MenuViewController.h"
 
 @interface LoginViewController ()
 @property (strong, nonatomic) UILabel* loading;
@@ -61,7 +62,7 @@
 {
         NSLog(@"In the login function");
         // Set permissions required from the facebook user account
-   /*
+   
         NSArray *permissionsArray = @[ @"public_profile", @"email", @"user_friends"];
     
     
@@ -93,10 +94,29 @@
                          NSDictionary *userData = (NSDictionary *)result;
                          NSString* facebookID = userData[@"id"];
                          
-                         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", facebookID]];
+                         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", facebookID]];
                          NSString* pictureLink = [url absoluteString];
                         // NSData *data = [NSData dataWithContentsOfURL:url];
                          //PFFile *file = [PFFile fileWithData:data];
+//                         NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+//                         
+//                         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+//                         
+//                         // Run network request asynchronously
+//                         [NSURLConnection sendAsynchronousRequest:urlRequest
+//                                                            queue:[NSOperationQueue mainQueue]
+//                                                completionHandler:
+//                          ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//                              if (connectionError == nil && data != nil) {
+//                                  UIImage *profilePicture = [UIImage imageWithData:data];
+//                                  UIImageView* profileImageView = [[UIImageView alloc] initWithImage:profilePicture];
+//                                  profileImageView.frame = CGRectMake(0, 0, 250, 200);
+//                                  //[self.view addSubview:profileImageView];
+//                                  MenuViewController *MVC = [[MenuViewController alloc] init];
+//                                  [MVC setProfilePicture:profileImageView];
+//                              }
+//                          }];
+
                          
                          [user setObject:userData[@"name"] forKey:@"full_name"];
                          [user setObject:userData[@"first_name"] forKey:@"first_name"];
@@ -122,27 +142,29 @@
                         {
                             NSLog(@"User is in here");
                             NSDictionary *userData = (NSDictionary *)result;
-                           /* NSString* facebookID = userData[@"id"];
+                            //NSString* facebookID = userData[@"id"];
                             
                             //NSString *full_name = userData[@"name"];
                             //NSString *first_name = userData[@"first_name"];
-                            
-                            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
-                            
-                            NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
-                            
-                            // Run network request asynchronously
-                            [NSURLConnection sendAsynchronousRequest:urlRequest
-                                                               queue:[NSOperationQueue mainQueue]
-                                                   completionHandler:
-                             ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                                 if (connectionError == nil && data != nil) {
-                                     UIImage *profilePicture = [UIImage imageWithData:data];
-                                     UIImageView* profileImageView = [[UIImageView alloc] initWithImage:profilePicture];
-                                     profileImageView.frame = CGRectMake(0, 0, 250, 200);
-                                     [self.view addSubview:profileImageView];
-                                 }
-                             }];
+//                            
+//                            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+//                            
+//                            NSURLRequest *urlRequest = [NSURLRequest requestWithURL:pictureURL];
+//                            
+//                            // Run network request asynchronously
+//                            [NSURLConnection sendAsynchronousRequest:urlRequest
+//                                                               queue:[NSOperationQueue mainQueue]
+//                                                   completionHandler:
+//                             ^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//                                 if (connectionError == nil && data != nil) {
+//                                     UIImage *profilePicture = [UIImage imageWithData:data];
+//                                     UIImageView* profileImageView = [[UIImageView alloc] initWithImage:profilePicture];
+//                                     profileImageView.frame = CGRectMake(0, 0, 250, 200);
+//                                     MenuViewController *MVC = [[MenuViewController alloc] init];
+//                                     [MVC setProfilePicture:profileImageView];
+//                                    // [self.view addSubview:profileImageView];
+//                                 }
+//                             }];
                             
 
                             
@@ -159,7 +181,7 @@
                 [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
             }
        }];
-*/
+
     ChooseBankViewController *CBVC = [[ChooseBankViewController alloc] init];
     [self presentViewController:CBVC animated:YES completion:nil];
 }
